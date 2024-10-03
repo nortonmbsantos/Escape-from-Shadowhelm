@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw3bokw528s0e"]
+
+[ext_resource type="Texture2D" uid="uid://d3im04oeve27" path="res://resources/basic-flashlight-2.png" id="1_3tjtk"]
+[ext_resource type="Script" path="res://scripts/flashlight.gd" id="1_qr1rk"]
+
+[sub_resource type="Gradient" id="Gradient_alo85"]
+offsets = PackedFloat32Array(0, 0.857143)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l4fsv"]
+gradient = SubResource("Gradient_alo85")
+fill = 1
+fill_from = Vector2(0.504587, 0.536697)
+fill_to = Vector2(1, 0.518349)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6gqq"]
+radius = 16.0
+height = 144.0
+
+[node name="Flashlight" type="Area2D"]
+script = ExtResource("1_qr1rk")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(80.5, -8)
+scale = Vector2(2.01563, 1.53125)
+energy = 3.13
+texture = SubResource("GradientTexture2D_l4fsv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3tjtk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(72, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_m6gqq")
+disabled = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

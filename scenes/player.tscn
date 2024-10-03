@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bilctby87x6hd"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_cuq1q"]
+[ext_resource type="Texture2D" uid="uid://4yshlt7sdanx" path="res://resources/basic-player.png" id="1_lu2kg"]
+[ext_resource type="PackedScene" uid="uid://bw3bokw528s0e" path="res://scenes/flashlight.tscn" id="3_5tw73"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6t7re"]
+radius = 9.05539
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_cuq1q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lu2kg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6t7re")
+
+[node name="Flashlight" parent="." instance=ExtResource("3_5tw73")]
